@@ -1,8 +1,11 @@
-let apiQuotes = [];
 const authorText = document.getElementById("author");
 const quoteText = document.getElementById("quote");
 const loader = document.getElementById("loader");
 const quoteContainer = document.getElementById("quote-container");
+let newQuoteBtn = document.getElementById("new-quote");
+let twitterBtn = document.getElementById("twitter");
+
+let apiQuotes = [];
 
 // Show Loading
 function loading() {
@@ -50,6 +53,8 @@ async function getQuotes() {
     newQuote();
   } catch (error) {
     // Catch Error Here
+    await getQuotes();
+    console.log("whoops, no quote", error);
   }
 }
 
@@ -60,8 +65,6 @@ function tweetQuote() {
 }
 
 // Event Listeners
-let newQuoteBtn = document.getElementById("new-quote");
-let twitterBtn = document.getElementById("twitter");
 newQuoteBtn.addEventListener("click", newQuote);
 twitterBtn.addEventListener("click", tweetQuote);
 
